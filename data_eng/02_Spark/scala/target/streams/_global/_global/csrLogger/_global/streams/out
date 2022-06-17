@@ -1,8 +1,4 @@
-[debug] downloaded https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.27/mysql-connector-java-8.0.27.pom
-[debug] downloaded https://repo1.maven.org/maven2/com/google/protobuf/protobuf-java/3.11.4/protobuf-java-3.11.4.pom
-[debug] downloaded https://repo1.maven.org/maven2/com/google/protobuf/protobuf-parent/3.11.4/protobuf-parent-3.11.4.pom
-[debug] downloaded https://repo1.maven.org/maven2/com/google/protobuf/protobuf-bom/3.11.4/protobuf-bom-3.11.4.pom
-[debug] downloaded https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.27/mysql-connector-java-8.0.27.jar
-[debug] downloaded https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.27/mysql-connector-java-8.0.27-javadoc.jar
-[debug] downloaded https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.27/mysql-connector-java-8.0.27-javadoc.jar.sha1
-[debug] downloaded https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.27/mysql-connector-java-8.0.27-sources.jar
+[debug] downloaded https://repo1.maven.org/maven2/joda-time/joda-time/2.10.14/joda-time-2.10.14.pom
+[debug] downloaded https://repo1.maven.org/maven2/joda-time/joda-time/2.10.14/joda-time-2.10.14.jar
+[debug] downloaded https://repo1.maven.org/maven2/joda-time/joda-time/2.10.14/joda-time-2.10.14-sources.jar
+[debug] downloaded https://repo1.maven.org/maven2/joda-time/joda-time/2.10.14/joda-time-2.10.14-javadoc.jar

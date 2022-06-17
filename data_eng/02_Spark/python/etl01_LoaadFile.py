@@ -1,10 +1,8 @@
-import os 
+import datetime as dt
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import *
 from pyspark.sql.types import *
-from dataclasses import dataclass
-import mysql.connector
-from requests import options
+
 
 # conectando mysql
 spark = SparkSession.builder \
@@ -32,11 +30,16 @@ def main():
                 ,StructField("EU_Sales", FloatType(), True) 
                 ,StructField("JP_Sales", FloatType(), True) 
                 ,StructField("Other_Sales", FloatType(), True) 
-                ,StructField("Global_Sales", FloatType(), True) ])
+                ,StructField("Global_Sales", FloatType(), True) 
+                ,StructField("dt_atualizacao", DateType(), True) 
+                
+                ])
         # read file
         arq = spark.read.csv(dirfiler, header=True, schema=gameSchema)
+        # add variavel data atualização 
+        tp = arq.withColumn("dt_atualizacao", lit(dt.datetime.now()))
         try:
-                arq.write.format("jdbc").options(
+                tp.write.format("jdbc").options(
                 url="jdbc:mysql://localhost:3306/mydesenv",
                 driver = "com.mysql.cj.jdbc.Driver",
                 dbtable = "stg_list_video_game",
@@ -45,7 +48,7 @@ def main():
         except:
                 print('Erro ao tenta carregar banco !')
            
-        arq.show()
+        tp.show()
 if __name__ == "__main__":
         main()
 

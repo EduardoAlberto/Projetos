@@ -1,8 +1,9 @@
 package spark
 
 import org.apache.spark.sql._
+import org.apache.spark.sql.functions._
 import org.apache.log4j._
-import org.apache.spark.sql.types.{FloatType, IntegerType, StringType, StructType, BooleanType}
+import org.apache.spark.sql.types.{BooleanType, DateType, FloatType, IntegerType, StringType, StructType}
 
 object etl02_LoadFIle {
   //Create Class
@@ -99,9 +100,13 @@ object etl02_LoadFIle {
       .csv("01_data/video_games.csv")
       .as[inf_games]
 
+    //Add nova variavel
+    val tb = arq.withColumn("dt_atualizacao", date_format(current_timestamp(), "yyyy-MM-dd"))
+    val temp = tb.select ("Title","Features_Max_Players","Features_Online","Features_Multiplatform","Metadata_Genres","Metadata_Publishers","Metrics_Review_Score","Metrics_Sales","Metrics_Used_Price","Release_Year","Release_Rating","dt_atualizacao")
+
   try{
     // carregando a tabela no banco
-    arq.write.format("jdbc")
+    temp.write.format("jdbc")
       .option("url", "jdbc:mysql://localhost:3306/mydesenv")
       .option("dbtable","tb_bi_vgame")
       .option("user", "root")

@@ -7,6 +7,8 @@ libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-sql" % "3.2.1",
   "org.apache.spark" %% "spark-mllib" % "3.2.1",
   "org.apache.spark" %% "spark-streaming" % "3.2.1",
+  "joda-time" % "joda-time" % "2.10.14",
   "mysql" % "mysql-connector-java" % "8.0.27"
+
 
 )
