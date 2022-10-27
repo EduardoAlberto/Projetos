@@ -1,7 +1,6 @@
 import org.apache.spark.sql._
 import org.apache.log4j._
 import org.apache.spark.sql.functions._
-import org.apache.spark.sql.types.{DateType, StructType}
 import java.util.Properties
 import java.io.File
 
