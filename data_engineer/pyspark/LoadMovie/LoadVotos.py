@@ -21,7 +21,7 @@ if __name__ == "__main__":
       
       # verifica se arquivo existe
       if path.exists(pfile):
-            df01 = spark.read.option("delimiter", "\t").option("header", True).csv(pfile)
+            df01 = spark.read.option("delimiter", "\t").option("header", True).option("inferSchema", True).csv(pfile)
             df01 = df01.select("tconst","averageRating","numVotes",current_date().alias("dt_atualizacao"))
             df01.select("*").limit(1000).write.mode("overwrite").jdbc("jdbc:sqlserver://localhost:1433;databaseName=DBDWP511", "tb_votos",properties={"user": "sa", "password": "Numsey@Password!"})
             total = spark.read.jdbc("jdbc:sqlserver://localhost:1433;databaseName=DBDWP511", "tb_votos",properties={"user": "sa", "password": "Numsey@Password!"})
