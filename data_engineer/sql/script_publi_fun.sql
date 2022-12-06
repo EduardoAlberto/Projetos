@@ -31,5 +31,5 @@ FROM TMP_Customer a
 inner join DBDWP511.DBO.FactInternetSales b
 on a.CustomerKey = b.CustomerKey
 and a.rank >= 100
-ORDER BY a.rank;
+-- ORDER BY a.rank;
 
