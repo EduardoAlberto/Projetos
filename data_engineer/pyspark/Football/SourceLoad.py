@@ -35,7 +35,11 @@ def validaArq(df):
     return df
 
 df = validaArq(pfile)
-df.show()
+
+df = df.where((col("home")=="Sao Paulo")).show()
+
+print("#"* 50 +"INICIO"+"#"*50)
+
 # df.write.mode("overwrite").jdbc("jdbc:sqlserver://localhost:1433;databaseName=DBDWP511", "tb_camp_brasileiro",properties={"user": "sa", "password": "Numsey@Password!"})
 
 
