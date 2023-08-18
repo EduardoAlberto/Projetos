@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="loadfile:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/loadfile_jar</output-path>
-    <root id="archive" name="loadfile.jar">
-      <element id="module-output" name="loadfile" />
-    </root>
-  </artifact>
-</component>
