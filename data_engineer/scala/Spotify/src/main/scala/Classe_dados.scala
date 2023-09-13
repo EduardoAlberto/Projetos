@@ -1,0 +1,3 @@
+class Classe_dados {
+
+}
