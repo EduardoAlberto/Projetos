@@ -33,11 +33,11 @@ df_tracks    = x.tracks()
 
 
 
-# df_music.write.format("delta").mode("overwrite").jdbc("jdbc:mysql://localhost:3306/myDbUser", "myDbUser.tb_music",properties={"user": "root", "password": "mysql"})
-# df_tracks.write.format("delta").mode("overwrite").jdbc("jdbc:mysql://localhost:3306/myDbUser", "myDbUser.tb_tracks",properties={"user": "root", "password": "mysql"})
+df_music.write.format("delta").mode("overwrite").jdbc("jdbc:mysql://localhost:3306/myDbUser", "myDbUser.tb_music",properties={"user": "root", "password": "mysql"})
+df_tracks.write.format("delta").mode("overwrite").jdbc("jdbc:mysql://localhost:3306/myDbUser", "myDbUser.tb_tracks",properties={"user": "root", "password": "mysql"})
 # df_genres.write.format("delta").mode("overwrite").jdbc("jdbc:mysql://localhost:3306/myDbUser", "myDbUser.tb_genres",properties={"user": "root", "password": "mysql"})
-# df_artists.write.format("delta").mode("overwrite").jdbc("jdbc:mysql://localhost:3306/myDbUser", "myDbUser.tb_artists",properties={"user": "root", "password": "mysql"})
-# df_playlists.write.format("delta").mode("overwrite").jdbc("jdbc:mysql://localhost:3306/myDbUser", "myDbUser.tb_playlists",properties={"user": "root", "password": "mysql"})
+df_artists.write.format("delta").mode("overwrite").jdbc("jdbc:mysql://localhost:3306/myDbUser", "myDbUser.tb_artists",properties={"user": "root", "password": "mysql"})
+df_playlists.write.format("delta").mode("overwrite").jdbc("jdbc:mysql://localhost:3306/myDbUser", "myDbUser.tb_playlists",properties={"user": "root", "password": "mysql"})
 
 print(50*'#')
 print("Fim do processo")
