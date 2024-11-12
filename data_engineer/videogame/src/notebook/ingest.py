@@ -8,7 +8,7 @@ def validaArquivo(self,spark):
         schema = (StructType()
                  .add("Title",StringType(),True)
                  .add("Handheld",StringType(),True)
-                 .add("Max Players",StringType(),True)
+                 .add("MaxPlayers",StringType(),True)
                  .add("Multiplatform",StringType(),True)
                  .add("Online",StringType(),True)
                  .add("Genres",StringType(),True)
