@@ -1,7 +1,7 @@
 echo inicia carga 
 
 # Configurações do ambiente PySpark
-export SPARK_HOME=/Users/eduardoalberto/opt/spark-3.5.3-bin-hadoop3
+export SPARK_HOME=/Users/eduardoalberto/opt/spark-3.5.3
 export PYTHONPATH=$SPARK_HOME/python/:$PYTHONPATH
 
 # Caminho para o script PySpark
