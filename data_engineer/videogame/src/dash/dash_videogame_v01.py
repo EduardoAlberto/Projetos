@@ -2,23 +2,25 @@
 # visit http://127.0.0.1:8050/ in your web browser.
 
 
-from dash import Dash, html, dcc
+from dash import Dash, html, dcc, dash_table
 import plotly.express as px
 import pandas as pd
 from dbconfig import *
 
 app = Dash(__name__)
 
-df = selectNetflix()
+df = selectVideogame()
 
-fig = px.bar(df, x="type", y="country", color="title", barmode="group")
+fig = px.bar(df, x="genres", y="publishers", color="console", barmode="group")
+
 
 app.layout = html.Div(children=[
-    html.H1(children='Hello Dash'),
+    html.H1(children='Video Game Dash'),
+    
 
-    html.Div(children='''
-        Dash: A web application framework for your data.
-    '''),
+    html.Div(children=''' Dash: tabela com os jogos os jogos.'''),
+
+    dash_table.DataTable(data=df.to_dict('records'), page_size=10),
 
     dcc.Graph(
         id='example-graph',
