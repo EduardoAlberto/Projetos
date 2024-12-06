@@ -9,7 +9,7 @@ SCRIPT_PATH=/Users/eduardoalberto/Projetos/data_engineer/videogame/src/notebook/
 
 # Comando para executar o script PySpark
 $SPARK_HOME/bin/spark-submit \
-  --master local[2] \
+  --master local \
   --name MySparkApp \
   $SCRIPT_PATH
 
