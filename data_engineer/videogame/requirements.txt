@@ -1,0 +1,4 @@
+#requirements.txt
+dash==2.18.0
+pandas==2.2.3
+pip==24.3.1
