@@ -4,7 +4,6 @@
 
 from dash import Dash, html, dcc, dash_table
 import plotly.express as px
-import pandas as pd
 from dbconfig import *
 
 app = Dash(__name__)
@@ -12,7 +11,6 @@ app = Dash(__name__)
 df = selectVideogame()
 
 fig = px.bar(df, x="genres", y="publishers", color="console", barmode="group")
-
 
 app.layout = html.Div(children=[
     html.H1(children='Video Game Dash'),
@@ -26,6 +24,8 @@ app.layout = html.Div(children=[
         id='example-graph',
         figure=fig
     )
+
+    
 ])
 
 if __name__ == '__main__':

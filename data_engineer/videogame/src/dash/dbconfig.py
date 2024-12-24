@@ -20,8 +20,8 @@ def selectVideogame():
                         select * from temp where publishers is not null and total >= 5 ORDER BY total DESC''' % 'videogame', engine)
     return select
 
+df = selectVideogame()
+# print(df[["genres","publishers"]])
+# print(df["genres"])
+# print(df["publishers"])
 
-
-
-
-# print(df)
