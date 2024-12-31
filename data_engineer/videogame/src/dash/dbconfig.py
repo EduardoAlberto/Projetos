@@ -20,7 +20,23 @@ def selectVideogame():
                         select * from temp where publishers is not null and total >= 5 ORDER BY total DESC''' % 'videogame', engine)
     return select
 
-df = selectVideogame()
+def selectVideogame02():
+    engine = mydb.create_engine('mysql+mysqlconnector://root:mysql@localhost:3306/myDbUser?auth_plugin=mysql_native_password')
+    select = pd.read_sql(''' with temp as (
+                             select 
+                                distinct 
+                                genres, 
+                                console, 
+                                count(*) total 
+                             from %s 
+                             group by genres, 
+                                      console
+                         )
+                         select * from temp where total between 1 and 10 order by total'''% 'videogame', engine)
+    return select
+
+df = selectVideogame02()
+#print(df)
 # print(df[["genres","publishers"]])
 # print(df["genres"])
 # print(df["publishers"])

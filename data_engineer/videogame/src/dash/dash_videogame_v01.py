@@ -9,9 +9,10 @@ from dbconfig import *
 app = Dash(__name__)
 
 df = selectVideogame()
+df01 = selectVideogame02()
 
-fig = px.bar(df, x="genres", y="publishers", color="console", barmode="group")
-
+fig01 = px.bar(df, x="genres", y="publishers", color="console", barmode="group")
+fig02 = px.pie(df01, names='console', values='total', title='Vendas de Video Games por Plataforma')
 app.layout = html.Div(children=[
     html.H1(children='Video Game Dash'),
     
@@ -22,7 +23,12 @@ app.layout = html.Div(children=[
 
     dcc.Graph(
         id='example-graph',
-        figure=fig
+        figure=fig01
+    ),
+
+    dcc.Graph(
+        id='example-graph',
+        figure=fig02
     )
 
     
