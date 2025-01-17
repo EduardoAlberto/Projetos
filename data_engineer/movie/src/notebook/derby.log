@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Thu Jan 16 20:31:19 BRT 2025:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0194-7174-fb61-000022d44778 
+on database directory /Users/eduardoalberto/Projetos/data_engineer/movie/src/notebook/metastore_db with class loader sun.misc.Launcher$AppClassLoader@133314b 
+Loaded from file:/Users/eduardoalberto/opt/spark-3.5.4/jars/derby-10.14.2.0.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_333-b02
+user.dir=/Users/eduardoalberto/Projetos/data_engineer/movie/src/notebook
+os.name=Mac OS X
+os.arch=x86_64
+os.version=15.2
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''

@@ -1,0 +1,8 @@
+#run image jupyte 
+docker run -p 8888:8888 58377aaa152b
+
+# para acessar o terminal de dentro da image
+docker exec -it 083d72a8458a bash
+
+#copy file 
+docker cp kc_house_data.csv 083d72a8458a:/home/jovyan/work/loadFile/kc_house_data.csv 
