@@ -4,7 +4,8 @@ from pyspark.sql.types import *
 
 def fn_ingest (df: DataFrame) -> DataFrame :
 
-    dfs = df.filter(" deathYear <> r'\\N' and deathYear <> r'\\N'  ")\
+    dfs = df.limit(15000)\
+            .filter(" deathYear <> r'\\N' and deathYear <> r'\\N'  ")\
             .withColumn('profession_array',F.explode((F.split(F.col("primaryProfession"), ","))))\
             .withColumn('knownForTitles_array',F.explode((F.split(F.col("knownForTitles"),","))))\
             .drop_duplicates(['profession_array','knownForTitles_array'])

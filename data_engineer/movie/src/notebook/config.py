@@ -8,7 +8,14 @@ from  ingest import fn_ingest
 
 spark=SparkSession.builder.master("local[1]")\
         .appName("movie_local")\
-        .config("spark.driver.extraClassPath","/Users/eduardoalberto/opt/spark-3.4.4/jars/mysql-connector-j-9.1.0.jar")\
+        .config("spark.driver.extraClassPath","/Users/eduardoalberto/opt/spark-3.5.4/jars/mysql-connector-j-9.1.0.jar")\
+        .config("spark.sql.shuffle.partitions", "7") \
+        .config("spark.sql.warehouse.dir", "/Users/eduardoalberto/LoadFile/repository/database/") \
+        .config("spark.dynamicAllocation.enabled", "true") \
+        .config("spark.executor.cores", "4") \
+        .config("spark.dynamicAllocation.minExecutors", "1") \
+        .config("spark.dynamicAllocation.maxExecutors", "5") \
+        .enableHiveSupport()\
         .getOrCreate()
 spark.sparkContext.setLogLevel("OFF") 
 print('PySpark Version :'+spark.version)

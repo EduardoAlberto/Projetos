@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Thu Jan 16 22:06:26 BRT 2025:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0194-71cc-1015-000010dc4708 
+Mon Jan 20 23:37:18 BRT 2025:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0194-86b8-b18d-00001063c488 
 on database directory /Users/eduardoalberto/Projetos/data_engineer/movie/src/notebook/metastore_db with class loader sun.misc.Launcher$AppClassLoader@133314b 
 Loaded from file:/Users/eduardoalberto/opt/spark-3.5.4/jars/derby-10.14.2.0.jar
 java.vendor=Oracle Corporation
