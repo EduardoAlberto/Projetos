@@ -1,32 +1,46 @@
 from pyspark.sql import SparkSession,Row,DataFrame
 import pyspark.sql.functions as F
-from delta import configure_spark_with_delta_pip
-from delta.tables import DeltaTable
 from pyspark.sql.types import *
+import traceback
 
 
 
-def LaodDelta (self,spark) :
-    df01 = df.groupBy("name","imdb_id","overview","revenue","runtime","status","title","vote_average","vote_count","popularity","name_geners")\
-             .agg(F.count("title").alias("total"))\
-             .withColumn("dt_ref_carga", F.current_date())
+import os.path as path
 
-    df02 = df.groupBy("name","imdb_id","overview","revenue","runtime","status","title","vote_average","vote_count","popularity","name_geners")\
-             .agg(F.count("title").alias("total"))\
-             .withColumn("dt_ref_carga", F.current_date()+2)
+
+def LaodDelta (spark, dir):
+    print()
+
+    try:
+        path.exists(dir)
+        df = spark.read.option("delimiter",';').option("header", "True").option("inferSchema", "True").csv(dir)
+        df01 = df.groupBy("name","imdb_id","overview","revenue","runtime","status","title","vote_average","vote_count","popularity","name_geners")\
+                 .agg(F.count("title").alias("total"))\
+                 .withColumn("dt_ref_carga", F.current_date())
+
+        df02 = df.groupBy("name","imdb_id","overview","revenue","runtime","status","title","vote_average","vote_count","popularity","name_geners")\
+                 .agg(F.count("title").alias("total"))\
+                 .withColumn("dt_ref_carga", F.current_date()+2)
     
-    df01.write.format("delta").mode("overwrite").partitionBy("dt_ref_carga").option("overwriteSchema", "true").saveAsTable("tb_ratingMovie")
-    df02.write.format("delta").mode("overwrite").partitionBy("dt_ref_carga").option("overwriteSchema", "true").saveAsTable("st_ratingMovie")
+        df01.write.format("delta").mode("overwrite").partitionBy("dt_ref_carga").option("overwriteSchema", "true").saveAsTable("tb_ratingMovie")
+        df02.write.format("delta").mode("overwrite").partitionBy("dt_ref_carga").option("overwriteSchema", "true").saveAsTable("st_ratingMovie")
+ 
+    except Exception as e:
+        print(f"Ocorreu o seguinte erro: {e}")
+        traceback.print_exc()
+    return None
 
-def MergeDelta(df: DataFrame) -> DataFrame :
-    dftg = DeltaTable.forPath(spark, "/Users/eduardoalberto/LoadFile/repository/deltaTable/tb_ratingmovie")
-    dfsr = spark.read.format("delta").load("/Users/eduardoalberto/LoadFile/repository/deltaTable/st_ratingmovie")
 
-
-    (dftg.alias("dftg")
-        .merge(dfsr.alias("dfsr"),"dftg.imdb_id = dfsr.imdb_id")
-        .whenMatchedUpdateAll()
-        .whenNotMatchedInsertAll()
-        .whenNotMatchedBySourceDelete()
-        .execute()
-    )
+def MergeDelta(dftg,dfsr):
+    try:
+        dftg.alias("dftg")\
+            .merge(dfsr.alias("dfsr"),"dftg.imdb_id = dfsr.imdb_id")\
+            .whenMatchedUpdateAll()\
+            .whenNotMatchedInsertAll()\
+            .whenNotMatchedBySourceDelete()\
+            .execute()
+        
+    except Exception as e:
+        print(f"Ocorreu o seguinte erro: {e}")
+        traceback.print_exc()
+    return None
