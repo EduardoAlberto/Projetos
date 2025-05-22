@@ -1,0 +1,1 @@
+python3 /Users/eduardoalberto/Projetos/data_engineer/emp/src/config.py

@@ -1,0 +1,139 @@
+ERROR StatusLogger Reconfiguration failed: No configuration found for '7cd84586' at 'null' in 'null'
+ERROR StatusLogger Reconfiguration failed: No configuration found for 'Default' at 'null' in 'null'
+25/05/21 23:44:11 WARN Utils: Your hostname, MacBook-Pro-de-Eduardo.local resolves to a loopback address: 127.0.0.1; using 192.168.3.180 instead (on interface en0)
+25/05/21 23:44:11 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+Ivy Default Cache set to: /Users/eduardoalberto/.ivy2/cache
+The jars for the packages stored in: /Users/eduardoalberto/.ivy2/jars
+io.delta#delta-spark_2.12 added as a dependency
+uk.co.gresearch.spark#spark-extension_2.12 added as a dependency
+org.apache.spark#spark-avro_2.12 added as a dependency
+:: resolving dependencies :: org.apache.spark#spark-submit-parent-3052d8c4-c1fa-4b0d-be29-5dda554c7480;1.0
+	confs: [default]
+	found io.delta#delta-spark_2.12;3.1.0 in central
+	found io.delta#delta-storage;3.1.0 in central
+	found org.antlr#antlr4-runtime;4.9.3 in central
+	found uk.co.gresearch.spark#spark-extension_2.12;2.11.0-3.5 in central
+	found com.github.scopt#scopt_2.12;4.1.0 in central
+	found org.apache.spark#spark-avro_2.12;3.5.0 in central
+	found org.tukaani#xz;1.9 in central
+:: resolution report :: resolve 450ms :: artifacts dl 12ms
+	:: modules in use:
+	com.github.scopt#scopt_2.12;4.1.0 from central in [default]
+	io.delta#delta-spark_2.12;3.1.0 from central in [default]
+	io.delta#delta-storage;3.1.0 from central in [default]
+	org.antlr#antlr4-runtime;4.9.3 from central in [default]
+	org.apache.spark#spark-avro_2.12;3.5.0 from central in [default]
+	org.tukaani#xz;1.9 from central in [default]
+	uk.co.gresearch.spark#spark-extension_2.12;2.11.0-3.5 from central in [default]
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   7   |   0   |   0   |   0   ||   7   |   0   |
+	---------------------------------------------------------------------
+:: retrieving :: org.apache.spark#spark-submit-parent-3052d8c4-c1fa-4b0d-be29-5dda554c7480
+	confs: [default]
+	0 artifacts copied, 7 already retrieved (0kB/7ms)
+25/05/21 23:44:12 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+25/05/21 23:44:13 INFO SparkContext: Running Spark version 3.5.4
+25/05/21 23:44:13 INFO SparkContext: OS info Mac OS X, 15.5, x86_64
+25/05/21 23:44:13 INFO SparkContext: Java version 1.8.0_333
+25/05/21 23:44:13 INFO ResourceUtils: ==============================================================
+25/05/21 23:44:13 INFO ResourceUtils: No custom resources configured for spark.driver.
+25/05/21 23:44:13 INFO ResourceUtils: ==============================================================
+25/05/21 23:44:13 INFO SparkContext: Submitted application: emp
+25/05/21 23:44:13 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(cores -> name: cores, amount: 1, script: , vendor: , memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+25/05/21 23:44:13 INFO ResourceProfile: Limiting resource is cpu
+25/05/21 23:44:13 INFO ResourceProfileManager: Added ResourceProfile id: 0
+25/05/21 23:44:13 INFO SecurityManager: Changing view acls to: eduardoalberto
+25/05/21 23:44:13 INFO SecurityManager: Changing modify acls to: eduardoalberto
+25/05/21 23:44:13 INFO SecurityManager: Changing view acls groups to: 
+25/05/21 23:44:13 INFO SecurityManager: Changing modify acls groups to: 
+25/05/21 23:44:13 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: eduardoalberto; groups with view permissions: EMPTY; users with modify permissions: eduardoalberto; groups with modify permissions: EMPTY
+25/05/21 23:44:13 INFO Utils: Successfully started service 'sparkDriver' on port 50269.
+25/05/21 23:44:13 INFO SparkEnv: Registering MapOutputTracker
+25/05/21 23:44:13 INFO SparkEnv: Registering BlockManagerMaster
+25/05/21 23:44:13 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+25/05/21 23:44:13 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+25/05/21 23:44:13 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+25/05/21 23:44:13 INFO DiskBlockManager: Created local directory at /private/var/folders/f_/ch7py_w56_17128jcmg0jlmr0000gn/T/blockmgr-4302c5a0-9cdb-490f-a573-852871f90ece
+25/05/21 23:44:13 INFO MemoryStore: MemoryStore started with capacity 366.3 MiB
+25/05/21 23:44:13 INFO SparkEnv: Registering OutputCommitCoordinator
+25/05/21 23:44:13 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+25/05/21 23:44:14 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+25/05/21 23:44:14 INFO SparkContext: Added JAR file:///Users/eduardoalberto/.ivy2/jars/io.delta_delta-spark_2.12-3.1.0.jar at spark://192.168.3.180:50269/jars/io.delta_delta-spark_2.12-3.1.0.jar with timestamp 1747881853289
+25/05/21 23:44:14 INFO SparkContext: Added JAR file:///Users/eduardoalberto/.ivy2/jars/uk.co.gresearch.spark_spark-extension_2.12-2.11.0-3.5.jar at spark://192.168.3.180:50269/jars/uk.co.gresearch.spark_spark-extension_2.12-2.11.0-3.5.jar with timestamp 1747881853289
+25/05/21 23:44:14 INFO SparkContext: Added JAR file:///Users/eduardoalberto/.ivy2/jars/org.apache.spark_spark-avro_2.12-3.5.0.jar at spark://192.168.3.180:50269/jars/org.apache.spark_spark-avro_2.12-3.5.0.jar with timestamp 1747881853289
+25/05/21 23:44:14 INFO SparkContext: Added JAR file:///Users/eduardoalberto/.ivy2/jars/io.delta_delta-storage-3.1.0.jar at spark://192.168.3.180:50269/jars/io.delta_delta-storage-3.1.0.jar with timestamp 1747881853289
+25/05/21 23:44:14 INFO SparkContext: Added JAR file:///Users/eduardoalberto/.ivy2/jars/org.antlr_antlr4-runtime-4.9.3.jar at spark://192.168.3.180:50269/jars/org.antlr_antlr4-runtime-4.9.3.jar with timestamp 1747881853289
+25/05/21 23:44:14 INFO SparkContext: Added JAR file:///Users/eduardoalberto/.ivy2/jars/com.github.scopt_scopt_2.12-4.1.0.jar at spark://192.168.3.180:50269/jars/com.github.scopt_scopt_2.12-4.1.0.jar with timestamp 1747881853289
+25/05/21 23:44:14 INFO SparkContext: Added JAR file:///Users/eduardoalberto/.ivy2/jars/org.tukaani_xz-1.9.jar at spark://192.168.3.180:50269/jars/org.tukaani_xz-1.9.jar with timestamp 1747881853289
+25/05/21 23:44:14 INFO SparkContext: Added file file:///Users/eduardoalberto/.ivy2/jars/io.delta_delta-spark_2.12-3.1.0.jar at file:///Users/eduardoalberto/.ivy2/jars/io.delta_delta-spark_2.12-3.1.0.jar with timestamp 1747881853289
+25/05/21 23:44:14 INFO Utils: Copying /Users/eduardoalberto/.ivy2/jars/io.delta_delta-spark_2.12-3.1.0.jar to /private/var/folders/f_/ch7py_w56_17128jcmg0jlmr0000gn/T/spark-441917bc-40b6-4a6f-94ce-dec6a53f1aae/userFiles-f89afc31-921b-4600-b7fb-1b94e7285aa8/io.delta_delta-spark_2.12-3.1.0.jar
+25/05/21 23:44:14 INFO SparkContext: Added file file:///Users/eduardoalberto/.ivy2/jars/uk.co.gresearch.spark_spark-extension_2.12-2.11.0-3.5.jar at file:///Users/eduardoalberto/.ivy2/jars/uk.co.gresearch.spark_spark-extension_2.12-2.11.0-3.5.jar with timestamp 1747881853289
+25/05/21 23:44:14 INFO Utils: Copying /Users/eduardoalberto/.ivy2/jars/uk.co.gresearch.spark_spark-extension_2.12-2.11.0-3.5.jar to /private/var/folders/f_/ch7py_w56_17128jcmg0jlmr0000gn/T/spark-441917bc-40b6-4a6f-94ce-dec6a53f1aae/userFiles-f89afc31-921b-4600-b7fb-1b94e7285aa8/uk.co.gresearch.spark_spark-extension_2.12-2.11.0-3.5.jar
+25/05/21 23:44:14 INFO SparkContext: Added file file:///Users/eduardoalberto/.ivy2/jars/org.apache.spark_spark-avro_2.12-3.5.0.jar at file:///Users/eduardoalberto/.ivy2/jars/org.apache.spark_spark-avro_2.12-3.5.0.jar with timestamp 1747881853289
+25/05/21 23:44:14 INFO Utils: Copying /Users/eduardoalberto/.ivy2/jars/org.apache.spark_spark-avro_2.12-3.5.0.jar to /private/var/folders/f_/ch7py_w56_17128jcmg0jlmr0000gn/T/spark-441917bc-40b6-4a6f-94ce-dec6a53f1aae/userFiles-f89afc31-921b-4600-b7fb-1b94e7285aa8/org.apache.spark_spark-avro_2.12-3.5.0.jar
+25/05/21 23:44:14 INFO SparkContext: Added file file:///Users/eduardoalberto/.ivy2/jars/io.delta_delta-storage-3.1.0.jar at file:///Users/eduardoalberto/.ivy2/jars/io.delta_delta-storage-3.1.0.jar with timestamp 1747881853289
+25/05/21 23:44:14 INFO Utils: Copying /Users/eduardoalberto/.ivy2/jars/io.delta_delta-storage-3.1.0.jar to /private/var/folders/f_/ch7py_w56_17128jcmg0jlmr0000gn/T/spark-441917bc-40b6-4a6f-94ce-dec6a53f1aae/userFiles-f89afc31-921b-4600-b7fb-1b94e7285aa8/io.delta_delta-storage-3.1.0.jar
+25/05/21 23:44:14 INFO SparkContext: Added file file:///Users/eduardoalberto/.ivy2/jars/org.antlr_antlr4-runtime-4.9.3.jar at file:///Users/eduardoalberto/.ivy2/jars/org.antlr_antlr4-runtime-4.9.3.jar with timestamp 1747881853289
+25/05/21 23:44:14 INFO Utils: Copying /Users/eduardoalberto/.ivy2/jars/org.antlr_antlr4-runtime-4.9.3.jar to /private/var/folders/f_/ch7py_w56_17128jcmg0jlmr0000gn/T/spark-441917bc-40b6-4a6f-94ce-dec6a53f1aae/userFiles-f89afc31-921b-4600-b7fb-1b94e7285aa8/org.antlr_antlr4-runtime-4.9.3.jar
+25/05/21 23:44:14 INFO SparkContext: Added file file:///Users/eduardoalberto/.ivy2/jars/com.github.scopt_scopt_2.12-4.1.0.jar at file:///Users/eduardoalberto/.ivy2/jars/com.github.scopt_scopt_2.12-4.1.0.jar with timestamp 1747881853289
+25/05/21 23:44:14 INFO Utils: Copying /Users/eduardoalberto/.ivy2/jars/com.github.scopt_scopt_2.12-4.1.0.jar to /private/var/folders/f_/ch7py_w56_17128jcmg0jlmr0000gn/T/spark-441917bc-40b6-4a6f-94ce-dec6a53f1aae/userFiles-f89afc31-921b-4600-b7fb-1b94e7285aa8/com.github.scopt_scopt_2.12-4.1.0.jar
+25/05/21 23:44:14 INFO SparkContext: Added file file:///Users/eduardoalberto/.ivy2/jars/org.tukaani_xz-1.9.jar at file:///Users/eduardoalberto/.ivy2/jars/org.tukaani_xz-1.9.jar with timestamp 1747881853289
+25/05/21 23:44:14 INFO Utils: Copying /Users/eduardoalberto/.ivy2/jars/org.tukaani_xz-1.9.jar to /private/var/folders/f_/ch7py_w56_17128jcmg0jlmr0000gn/T/spark-441917bc-40b6-4a6f-94ce-dec6a53f1aae/userFiles-f89afc31-921b-4600-b7fb-1b94e7285aa8/org.tukaani_xz-1.9.jar
+25/05/21 23:44:14 INFO Executor: Starting executor ID driver on host 192.168.3.180
+25/05/21 23:44:14 INFO Executor: OS info Mac OS X, 15.5, x86_64
+25/05/21 23:44:14 INFO Executor: Java version 1.8.0_333
+25/05/21 23:44:14 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+25/05/21 23:44:14 INFO Executor: Created or updated repl class loader org.apache.spark.util.MutableURLClassLoader@775371d8 for default.
+25/05/21 23:44:14 INFO Executor: Fetching file:///Users/eduardoalberto/.ivy2/jars/io.delta_delta-storage-3.1.0.jar with timestamp 1747881853289
+25/05/21 23:44:14 INFO Utils: /Users/eduardoalberto/.ivy2/jars/io.delta_delta-storage-3.1.0.jar has been previously copied to /private/var/folders/f_/ch7py_w56_17128jcmg0jlmr0000gn/T/spark-441917bc-40b6-4a6f-94ce-dec6a53f1aae/userFiles-f89afc31-921b-4600-b7fb-1b94e7285aa8/io.delta_delta-storage-3.1.0.jar
+25/05/21 23:44:14 INFO Executor: Fetching file:///Users/eduardoalberto/.ivy2/jars/org.apache.spark_spark-avro_2.12-3.5.0.jar with timestamp 1747881853289
+25/05/21 23:44:14 INFO Utils: /Users/eduardoalberto/.ivy2/jars/org.apache.spark_spark-avro_2.12-3.5.0.jar has been previously copied to /private/var/folders/f_/ch7py_w56_17128jcmg0jlmr0000gn/T/spark-441917bc-40b6-4a6f-94ce-dec6a53f1aae/userFiles-f89afc31-921b-4600-b7fb-1b94e7285aa8/org.apache.spark_spark-avro_2.12-3.5.0.jar
+25/05/21 23:44:14 INFO Executor: Fetching file:///Users/eduardoalberto/.ivy2/jars/org.antlr_antlr4-runtime-4.9.3.jar with timestamp 1747881853289
+25/05/21 23:44:14 INFO Utils: /Users/eduardoalberto/.ivy2/jars/org.antlr_antlr4-runtime-4.9.3.jar has been previously copied to /private/var/folders/f_/ch7py_w56_17128jcmg0jlmr0000gn/T/spark-441917bc-40b6-4a6f-94ce-dec6a53f1aae/userFiles-f89afc31-921b-4600-b7fb-1b94e7285aa8/org.antlr_antlr4-runtime-4.9.3.jar
+25/05/21 23:44:14 INFO Executor: Fetching file:///Users/eduardoalberto/.ivy2/jars/org.tukaani_xz-1.9.jar with timestamp 1747881853289
+25/05/21 23:44:14 INFO Utils: /Users/eduardoalberto/.ivy2/jars/org.tukaani_xz-1.9.jar has been previously copied to /private/var/folders/f_/ch7py_w56_17128jcmg0jlmr0000gn/T/spark-441917bc-40b6-4a6f-94ce-dec6a53f1aae/userFiles-f89afc31-921b-4600-b7fb-1b94e7285aa8/org.tukaani_xz-1.9.jar
+25/05/21 23:44:14 INFO Executor: Fetching file:///Users/eduardoalberto/.ivy2/jars/com.github.scopt_scopt_2.12-4.1.0.jar with timestamp 1747881853289
+25/05/21 23:44:14 INFO Utils: /Users/eduardoalberto/.ivy2/jars/com.github.scopt_scopt_2.12-4.1.0.jar has been previously copied to /private/var/folders/f_/ch7py_w56_17128jcmg0jlmr0000gn/T/spark-441917bc-40b6-4a6f-94ce-dec6a53f1aae/userFiles-f89afc31-921b-4600-b7fb-1b94e7285aa8/com.github.scopt_scopt_2.12-4.1.0.jar
+25/05/21 23:44:14 INFO Executor: Fetching file:///Users/eduardoalberto/.ivy2/jars/io.delta_delta-spark_2.12-3.1.0.jar with timestamp 1747881853289
+25/05/21 23:44:14 INFO Utils: /Users/eduardoalberto/.ivy2/jars/io.delta_delta-spark_2.12-3.1.0.jar has been previously copied to /private/var/folders/f_/ch7py_w56_17128jcmg0jlmr0000gn/T/spark-441917bc-40b6-4a6f-94ce-dec6a53f1aae/userFiles-f89afc31-921b-4600-b7fb-1b94e7285aa8/io.delta_delta-spark_2.12-3.1.0.jar
+25/05/21 23:44:14 INFO Executor: Fetching file:///Users/eduardoalberto/.ivy2/jars/uk.co.gresearch.spark_spark-extension_2.12-2.11.0-3.5.jar with timestamp 1747881853289
+25/05/21 23:44:14 INFO Utils: /Users/eduardoalberto/.ivy2/jars/uk.co.gresearch.spark_spark-extension_2.12-2.11.0-3.5.jar has been previously copied to /private/var/folders/f_/ch7py_w56_17128jcmg0jlmr0000gn/T/spark-441917bc-40b6-4a6f-94ce-dec6a53f1aae/userFiles-f89afc31-921b-4600-b7fb-1b94e7285aa8/uk.co.gresearch.spark_spark-extension_2.12-2.11.0-3.5.jar
+25/05/21 23:44:14 INFO Executor: Fetching spark://192.168.3.180:50269/jars/io.delta_delta-storage-3.1.0.jar with timestamp 1747881853289
+25/05/21 23:44:14 INFO TransportClientFactory: Successfully created connection to /192.168.3.180:50269 after 29 ms (0 ms spent in bootstraps)
+25/05/21 23:44:14 INFO Utils: Fetching spark://192.168.3.180:50269/jars/io.delta_delta-storage-3.1.0.jar to /private/var/folders/f_/ch7py_w56_17128jcmg0jlmr0000gn/T/spark-441917bc-40b6-4a6f-94ce-dec6a53f1aae/userFiles-f89afc31-921b-4600-b7fb-1b94e7285aa8/fetchFileTemp5863947620057966435.tmp
+25/05/21 23:44:14 INFO Utils: /private/var/folders/f_/ch7py_w56_17128jcmg0jlmr0000gn/T/spark-441917bc-40b6-4a6f-94ce-dec6a53f1aae/userFiles-f89afc31-921b-4600-b7fb-1b94e7285aa8/fetchFileTemp5863947620057966435.tmp has been previously copied to /private/var/folders/f_/ch7py_w56_17128jcmg0jlmr0000gn/T/spark-441917bc-40b6-4a6f-94ce-dec6a53f1aae/userFiles-f89afc31-921b-4600-b7fb-1b94e7285aa8/io.delta_delta-storage-3.1.0.jar
+25/05/21 23:44:14 INFO Executor: Adding file:/private/var/folders/f_/ch7py_w56_17128jcmg0jlmr0000gn/T/spark-441917bc-40b6-4a6f-94ce-dec6a53f1aae/userFiles-f89afc31-921b-4600-b7fb-1b94e7285aa8/io.delta_delta-storage-3.1.0.jar to class loader default
+25/05/21 23:44:14 INFO Executor: Fetching spark://192.168.3.180:50269/jars/org.tukaani_xz-1.9.jar with timestamp 1747881853289
+25/05/21 23:44:14 INFO Utils: Fetching spark://192.168.3.180:50269/jars/org.tukaani_xz-1.9.jar to /private/var/folders/f_/ch7py_w56_17128jcmg0jlmr0000gn/T/spark-441917bc-40b6-4a6f-94ce-dec6a53f1aae/userFiles-f89afc31-921b-4600-b7fb-1b94e7285aa8/fetchFileTemp830644992171177643.tmp
+25/05/21 23:44:14 INFO Utils: /private/var/folders/f_/ch7py_w56_17128jcmg0jlmr0000gn/T/spark-441917bc-40b6-4a6f-94ce-dec6a53f1aae/userFiles-f89afc31-921b-4600-b7fb-1b94e7285aa8/fetchFileTemp830644992171177643.tmp has been previously copied to /private/var/folders/f_/ch7py_w56_17128jcmg0jlmr0000gn/T/spark-441917bc-40b6-4a6f-94ce-dec6a53f1aae/userFiles-f89afc31-921b-4600-b7fb-1b94e7285aa8/org.tukaani_xz-1.9.jar
+25/05/21 23:44:14 INFO Executor: Adding file:/private/var/folders/f_/ch7py_w56_17128jcmg0jlmr0000gn/T/spark-441917bc-40b6-4a6f-94ce-dec6a53f1aae/userFiles-f89afc31-921b-4600-b7fb-1b94e7285aa8/org.tukaani_xz-1.9.jar to class loader default
+25/05/21 23:44:14 INFO Executor: Fetching spark://192.168.3.180:50269/jars/org.apache.spark_spark-avro_2.12-3.5.0.jar with timestamp 1747881853289
+25/05/21 23:44:14 INFO Utils: Fetching spark://192.168.3.180:50269/jars/org.apache.spark_spark-avro_2.12-3.5.0.jar to /private/var/folders/f_/ch7py_w56_17128jcmg0jlmr0000gn/T/spark-441917bc-40b6-4a6f-94ce-dec6a53f1aae/userFiles-f89afc31-921b-4600-b7fb-1b94e7285aa8/fetchFileTemp497712286644583199.tmp
+25/05/21 23:44:14 INFO Utils: /private/var/folders/f_/ch7py_w56_17128jcmg0jlmr0000gn/T/spark-441917bc-40b6-4a6f-94ce-dec6a53f1aae/userFiles-f89afc31-921b-4600-b7fb-1b94e7285aa8/fetchFileTemp497712286644583199.tmp has been previously copied to /private/var/folders/f_/ch7py_w56_17128jcmg0jlmr0000gn/T/spark-441917bc-40b6-4a6f-94ce-dec6a53f1aae/userFiles-f89afc31-921b-4600-b7fb-1b94e7285aa8/org.apache.spark_spark-avro_2.12-3.5.0.jar
+25/05/21 23:44:14 INFO Executor: Adding file:/private/var/folders/f_/ch7py_w56_17128jcmg0jlmr0000gn/T/spark-441917bc-40b6-4a6f-94ce-dec6a53f1aae/userFiles-f89afc31-921b-4600-b7fb-1b94e7285aa8/org.apache.spark_spark-avro_2.12-3.5.0.jar to class loader default
+25/05/21 23:44:14 INFO Executor: Fetching spark://192.168.3.180:50269/jars/io.delta_delta-spark_2.12-3.1.0.jar with timestamp 1747881853289
+25/05/21 23:44:14 INFO Utils: Fetching spark://192.168.3.180:50269/jars/io.delta_delta-spark_2.12-3.1.0.jar to /private/var/folders/f_/ch7py_w56_17128jcmg0jlmr0000gn/T/spark-441917bc-40b6-4a6f-94ce-dec6a53f1aae/userFiles-f89afc31-921b-4600-b7fb-1b94e7285aa8/fetchFileTemp5382917534872411653.tmp
+25/05/21 23:44:14 INFO Utils: /private/var/folders/f_/ch7py_w56_17128jcmg0jlmr0000gn/T/spark-441917bc-40b6-4a6f-94ce-dec6a53f1aae/userFiles-f89afc31-921b-4600-b7fb-1b94e7285aa8/fetchFileTemp5382917534872411653.tmp has been previously copied to /private/var/folders/f_/ch7py_w56_17128jcmg0jlmr0000gn/T/spark-441917bc-40b6-4a6f-94ce-dec6a53f1aae/userFiles-f89afc31-921b-4600-b7fb-1b94e7285aa8/io.delta_delta-spark_2.12-3.1.0.jar
+25/05/21 23:44:14 INFO Executor: Adding file:/private/var/folders/f_/ch7py_w56_17128jcmg0jlmr0000gn/T/spark-441917bc-40b6-4a6f-94ce-dec6a53f1aae/userFiles-f89afc31-921b-4600-b7fb-1b94e7285aa8/io.delta_delta-spark_2.12-3.1.0.jar to class loader default
+25/05/21 23:44:14 INFO Executor: Fetching spark://192.168.3.180:50269/jars/org.antlr_antlr4-runtime-4.9.3.jar with timestamp 1747881853289
+25/05/21 23:44:14 INFO Utils: Fetching spark://192.168.3.180:50269/jars/org.antlr_antlr4-runtime-4.9.3.jar to /private/var/folders/f_/ch7py_w56_17128jcmg0jlmr0000gn/T/spark-441917bc-40b6-4a6f-94ce-dec6a53f1aae/userFiles-f89afc31-921b-4600-b7fb-1b94e7285aa8/fetchFileTemp2861988649822657944.tmp
+25/05/21 23:44:14 INFO Utils: /private/var/folders/f_/ch7py_w56_17128jcmg0jlmr0000gn/T/spark-441917bc-40b6-4a6f-94ce-dec6a53f1aae/userFiles-f89afc31-921b-4600-b7fb-1b94e7285aa8/fetchFileTemp2861988649822657944.tmp has been previously copied to /private/var/folders/f_/ch7py_w56_17128jcmg0jlmr0000gn/T/spark-441917bc-40b6-4a6f-94ce-dec6a53f1aae/userFiles-f89afc31-921b-4600-b7fb-1b94e7285aa8/org.antlr_antlr4-runtime-4.9.3.jar
+25/05/21 23:44:14 INFO Executor: Adding file:/private/var/folders/f_/ch7py_w56_17128jcmg0jlmr0000gn/T/spark-441917bc-40b6-4a6f-94ce-dec6a53f1aae/userFiles-f89afc31-921b-4600-b7fb-1b94e7285aa8/org.antlr_antlr4-runtime-4.9.3.jar to class loader default
+25/05/21 23:44:14 INFO Executor: Fetching spark://192.168.3.180:50269/jars/uk.co.gresearch.spark_spark-extension_2.12-2.11.0-3.5.jar with timestamp 1747881853289
+25/05/21 23:44:14 INFO Utils: Fetching spark://192.168.3.180:50269/jars/uk.co.gresearch.spark_spark-extension_2.12-2.11.0-3.5.jar to /private/var/folders/f_/ch7py_w56_17128jcmg0jlmr0000gn/T/spark-441917bc-40b6-4a6f-94ce-dec6a53f1aae/userFiles-f89afc31-921b-4600-b7fb-1b94e7285aa8/fetchFileTemp6206857344243433497.tmp
+25/05/21 23:44:14 INFO Utils: /private/var/folders/f_/ch7py_w56_17128jcmg0jlmr0000gn/T/spark-441917bc-40b6-4a6f-94ce-dec6a53f1aae/userFiles-f89afc31-921b-4600-b7fb-1b94e7285aa8/fetchFileTemp6206857344243433497.tmp has been previously copied to /private/var/folders/f_/ch7py_w56_17128jcmg0jlmr0000gn/T/spark-441917bc-40b6-4a6f-94ce-dec6a53f1aae/userFiles-f89afc31-921b-4600-b7fb-1b94e7285aa8/uk.co.gresearch.spark_spark-extension_2.12-2.11.0-3.5.jar
+25/05/21 23:44:14 INFO Executor: Adding file:/private/var/folders/f_/ch7py_w56_17128jcmg0jlmr0000gn/T/spark-441917bc-40b6-4a6f-94ce-dec6a53f1aae/userFiles-f89afc31-921b-4600-b7fb-1b94e7285aa8/uk.co.gresearch.spark_spark-extension_2.12-2.11.0-3.5.jar to class loader default
+25/05/21 23:44:14 INFO Executor: Fetching spark://192.168.3.180:50269/jars/com.github.scopt_scopt_2.12-4.1.0.jar with timestamp 1747881853289
+25/05/21 23:44:14 INFO Utils: Fetching spark://192.168.3.180:50269/jars/com.github.scopt_scopt_2.12-4.1.0.jar to /private/var/folders/f_/ch7py_w56_17128jcmg0jlmr0000gn/T/spark-441917bc-40b6-4a6f-94ce-dec6a53f1aae/userFiles-f89afc31-921b-4600-b7fb-1b94e7285aa8/fetchFileTemp2650690355267606004.tmp
+25/05/21 23:44:14 INFO Utils: /private/var/folders/f_/ch7py_w56_17128jcmg0jlmr0000gn/T/spark-441917bc-40b6-4a6f-94ce-dec6a53f1aae/userFiles-f89afc31-921b-4600-b7fb-1b94e7285aa8/fetchFileTemp2650690355267606004.tmp has been previously copied to /private/var/folders/f_/ch7py_w56_17128jcmg0jlmr0000gn/T/spark-441917bc-40b6-4a6f-94ce-dec6a53f1aae/userFiles-f89afc31-921b-4600-b7fb-1b94e7285aa8/com.github.scopt_scopt_2.12-4.1.0.jar
+25/05/21 23:44:14 INFO Executor: Adding file:/private/var/folders/f_/ch7py_w56_17128jcmg0jlmr0000gn/T/spark-441917bc-40b6-4a6f-94ce-dec6a53f1aae/userFiles-f89afc31-921b-4600-b7fb-1b94e7285aa8/com.github.scopt_scopt_2.12-4.1.0.jar to class loader default
+25/05/21 23:44:14 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 50272.
+25/05/21 23:44:14 INFO NettyBlockTransferService: Server created on 192.168.3.180:50272
+25/05/21 23:44:14 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/05/21 23:44:14 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, 192.168.3.180, 50272, None)
+25/05/21 23:44:14 INFO BlockManagerMasterEndpoint: Registering block manager 192.168.3.180:50272 with 366.3 MiB RAM, BlockManagerId(driver, 192.168.3.180, 50272, None)
+25/05/21 23:44:14 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, 192.168.3.180, 50272, None)
+25/05/21 23:44:14 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, 192.168.3.180, 50272, None)

@@ -1,0 +1,8 @@
+🚀 Iniciando Spark job...
+:: loading settings :: url = jar:file:/Users/eduardoalberto/opt/spark-3.5.4/jars/ivy-2.5.1.jar!/org/apache/ivy/core/settings/ivysettings.xml
+PySpark Version :3.5.4
+##############################  INICIO CARGA ##############################
+Total de registros carregados = 21613
+Carga finalizada com sucesso
+##############################  FIM ##############################
+✅ Job executado com sucesso às 22:27:16

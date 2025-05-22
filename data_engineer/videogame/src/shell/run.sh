@@ -8,7 +8,7 @@ export PYTHONPATH=$SPARK_HOME/python/:$PYTHONPATH
 SCRIPT_PATH=/Users/eduardoalberto/Projetos/data_engineer/videogame/src/notebook/config.py
 
 # Comando para executar o script PySpark
-$SPARK_HOME/bin/spark-submit \
+SPARK_HOME/bin/spark-submit \
   --master local \
   --name MySparkApp \
   $SCRIPT_PATH

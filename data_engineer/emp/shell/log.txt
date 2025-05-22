@@ -1,0 +1,3 @@
+:: loading settings :: url = jar:file:/Users/eduardoalberto/opt/spark-3.5.4/jars/ivy-2.5.1.jar!/org/apache/ivy/core/settings/ivysettings.xml
+Carga finalizada com sucesso
+:: loading settings :: url = jar:file:/Users/eduardoalberto/opt/spark-3.5.4/jars/ivy-2.5.1.jar!/org/apache/ivy/core/settings/ivysettings.xml
