@@ -1,0 +1,12 @@
+-- CREATE SCHEMA IF NOT EXISTS bigdata
+--     AUTHORIZATION postgres;
+
+-- CREATE TABLE IF NOT EXISTS bigdata.clientes (
+--     id SERIAL PRIMARY KEY,
+--     nome TEXT NOT NULL
+-- );
+
+
+SELECT * FROM bigdata.clientes;
+
+SELECT id_number, sqft_living15 FROM bigdata.emp;
