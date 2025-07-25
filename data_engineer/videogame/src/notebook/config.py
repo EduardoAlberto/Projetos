@@ -12,7 +12,7 @@ sc = spark.sparkContext
 spark.sparkContext.setLogLevel("OFF") 
 spark
 
-file = '/user/bigdata/repository/input/*.csv'
+file = '/Users/eduardoalberto/LoadFile/input/video_games.csv'
 df = validaArquivo(file,spark)
 print("TOTAL DE REGISTROS CARREGADOS: " + str(df.count()))
 carregaArquivo(file,spark)

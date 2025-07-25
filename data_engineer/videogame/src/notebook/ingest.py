@@ -48,7 +48,8 @@ def validaArquivo(self,spark):
                     .add("storymedian",DecimalType(8,2),True)
                     .add("storypolled",DecimalType(8,2),True)
                     .add("storyrushed",DecimalType(8,2),True))
-        arq = spark.read.csv(self,schema=schema, header=False)
+        arq = spark.read.csv(self,schema=schema, header=False)\
+                   .filter("console = 'Nintendo DS' and year > 2005 ")
 
     return arq
 
