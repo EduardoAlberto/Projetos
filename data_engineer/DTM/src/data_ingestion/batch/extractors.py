@@ -49,3 +49,17 @@ class BatchDataExtractor:
             return self.spark.read.json(path)
         else:
             raise ValueError(f"Tipo de arquivo não suportado: {file_type}")
+        
+    def save_to_postgres(self, df):
+        jdbc_url = Config.DATA_SOURCES["jdbc_url"]
+        props = {
+            "user": os.getenv("DB_USER", "postgres"),
+            "password": os.getenv("DB_PASSWORD", "postgre123"),
+            "driver": "org.postgresql.Driver"
+        }
+
+        df.write \
+            .mode("append") \
+            .jdbc(url=jdbc_url, table="healthcare_real_time", properties=props)
+
+        print("Dados simulados salvos no PostgreSQL com sucesso.")

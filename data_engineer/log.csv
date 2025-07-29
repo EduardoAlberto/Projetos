@@ -1,0 +1,2 @@
+:: loading settings :: url = jar:file:/Users/eduardoalberto/opt/spark-3.5.4/jars/ivy-2.5.1.jar!/org/apache/ivy/core/settings/ivysettings.xml
+Dados simulados salvos no PostgreSQL com sucesso.
