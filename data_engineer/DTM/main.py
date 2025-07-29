@@ -53,7 +53,7 @@ class HealthcareDataPipeline:
         df_metrics = self.metrics.add_metrics(df_transformed)
 
         df_metrics = df_metrics.withColumn("date", to_date("timestamp")) \
-                            .withColumn("processing_time", current_timestamp())  # <-- ADICIONADO
+                            .withColumn("processing_time", current_timestamp()) 
 
         self.storage.save_to_data_lake(df_metrics, "healthcare/streaming", ["date"])
 
