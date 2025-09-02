@@ -16,7 +16,7 @@ class BatchExtractLoad:
     def from_database(self, query: str) -> DataFrame:
             return self.spark.read \
                 .format("jdbc") \
-                .option("url", "jdbc:postgresql://localhost:5432/dev5114")\
+                .option("url", "jdbc:postgresql://localhost:5432/dbpostgres")\
                 .option("query", query) \
                 .option("user", os.getenv("DB_USER", "dbpostgres")) \
                 .option("password", os.getenv("DB_PASSWORD", "postgre123")) \

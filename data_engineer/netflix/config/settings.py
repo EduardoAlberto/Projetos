@@ -8,7 +8,7 @@ class Config:
 
     # Fontes de dados
     DATA_SOURCES = {
-        "jdbc_url": os.getenv("JDBC_URL", "jdbc:postgresql://localhost:5432/netflix")
+        "jdbc_url": os.getenv("JDBC_URL", "jdbc:postgresql://localhost:5432/dbpostgres")
     }
 
     # Armazenamento

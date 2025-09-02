@@ -14,11 +14,17 @@ class DataLakeManager:
     def save_to_data_lake(self, df: DataFrame, path: str) -> None:
         full_path = f"{settings.Config.STORAGE['data_lake_path']}/{path}"
 
-        df_with_metadata = df.withColumn("data_execucao", F.current_timestamp())
+        df_with_metadata = df.withColumn("data_execucao", F.current_date())
 
-        df_with_metadata.write.mode("overwrite").parquet(full_path)
+        df_with_metadata.write.mode("overwrite").partitionBy("data_execucao").parquet(full_path)
 
-    def save_to_postgres(self, df):
+    def save_to_postgres(self, tables: dict):
+        """
+        Salva múltiplos DataFrames em tabelas no PostgreSQL.
+        
+        Args:
+            tables (dict): dicionário no formato {"nome_tabela": DataFrame, ...}
+        """
         jdbc_url = Config.DATA_SOURCES["jdbc_url"]
         props = {
             "user": os.getenv("DB_USER", "dbpostgres"),
@@ -26,9 +32,10 @@ class DataLakeManager:
             "driver": "org.postgresql.Driver"
         }
 
-        df.write \
-            .mode("append") \
-            .jdbc(url=jdbc_url, table="healthcare_real_time", properties=props)
-
-        print("Dados simulados salvos no PostgreSQL com sucesso.")
+        for table_name, df in tables.items():
+            print(f"Salvando dados na tabela {table_name}...")
+            df.write \
+                .mode("overwrite") \
+                .jdbc(url=jdbc_url, table=table_name, properties=props)
+            print(f"Tabela {table_name} salva com sucesso no PostgreSQL.")
 

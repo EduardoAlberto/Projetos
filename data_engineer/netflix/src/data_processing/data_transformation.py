@@ -15,7 +15,7 @@ class DataTransformer:
                 df.withColumn("id", F.substring(F.col("show_id"), 2, 4))
                 .withColumn("date_added", F.trim(F.col("date_added")))
                 .withColumn("dt_added",F.when(F.col("date_added").rlike("^[A-Za-z]+ [0-9]{1,2}, [0-9]{4}$"), F.to_date(F.col("date_added"), "MMMM d, yyyy")).otherwise(None))
-                .withColumn("dt_processamento", F.current_timestamp())  
+                .withColumn("dt_processamento", F.current_date())  
             ) 
 
         return df

@@ -8,6 +8,7 @@ from config.settings import Config
 from src.data_ingestion.extractorLoad import BatchExtractLoad
 from src.data_processing.data_transformation import DataTransformer
 from src.data_storage.data_lake import DataLakeManager
+from src.data_quality.data_quality import DataQuality
 
 
 class DataPipelineNetflix:
@@ -23,22 +24,31 @@ class DataPipelineNetflix:
         
     def run_batch_pipeline(self,arq):
 
-        # Data Transformation
+        # Data Processing
         transf = DataTransformer()
         df_transformed = transf.apply_transformations(arq)
         dfs = transf.country_transformations(df_transformed)
-        dfs.show(truncate=True)
 
         # Data Storage
         storage = DataLakeManager(self.spark)
         storage.save_to_data_lake(dfs, "arq/")
+        storage.save_to_postgres(
+            {
+            "tb_netflix": df_transformed,
+            "tb_country_netflix": dfs
+            }
+        )
+        # Data Ingestion
+        extractor = BatchExtractLoad(self.spark)
+        df = extractor.from_database("SELECT * FROM tb_score_netflix")
+        # Data Quality
+        dq = DataQuality(self.spark)
+        quality_report = dq.check_frequency_all(df, threshold=1)
+        dfDQ = quality_report["*"]
 
-        # extractor = BatchExtractLoad(self.spark)
-        # df = extractor.from_database("SELECT * FROM public.tb_netflix")
+        # Save Data Quality Report
+        storage.save_to_postgres({"data_quality_report": dfDQ})
 
-
-        # self.storage.save_to_data_lake(df, "healthcare/processed", ["date"])
-        # extractor.save_to_postgres(df)
 
     def run(self):
         try:
