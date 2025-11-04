@@ -7,6 +7,7 @@ sys.path.append(str(Path(__file__).parent.parent.parent))  # Adiciona DTM/ ao pa
 from config import settings
 
 class DataTransformer:
+    
     def __init__(self):
         pass
 
@@ -23,15 +24,15 @@ class DataTransformer:
     def country_transformations(self, df: DataFrame) -> DataFrame:
         df02 = (
             df.groupBy("country", "id")
-              .agg(F.count("show_id").alias("total_shows"))
-              .orderBy(F.desc("total_shows"))
-              .withColumnRenamed("country", "country_name")
+                .agg(F.count("show_id").alias("total_shows"))
+                .orderBy(F.desc("total_shows"))
+                .withColumnRenamed("country", "country_name")
         )
             
         df03 = (
             df.alias("n1")
-              .join(df02.alias("n2"), on=["id"], how="left")
-              .na.drop(subset=["country", "cast", "director"])
+                .join(df02.alias("n2"), on=["id"], how="left")
+                .na.drop(subset=["country", "cast", "director"])
         )
         
         return df03
