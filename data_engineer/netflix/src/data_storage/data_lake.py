@@ -39,3 +39,6 @@ class DataLakeManager:
                 .jdbc(url=jdbc_url, table=table_name, properties=props)
             print(f"Tabela {table_name} salva com sucesso no PostgreSQL.")
 
+
+            
+
