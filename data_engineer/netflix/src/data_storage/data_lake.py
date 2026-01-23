@@ -27,7 +27,7 @@ class DataLakeManager:
         """
         jdbc_url = Config.DATA_SOURCES["jdbc_url"]
         props = {
-            "user": os.getenv("DB_USER", "dbpostgres"),
+            "user": os.getenv("DB_USER", "postgres"),
             "password": os.getenv("DB_PASSWORD", "postgre123"),
             "driver": "org.postgresql.Driver"
         }

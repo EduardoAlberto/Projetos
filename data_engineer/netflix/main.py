@@ -40,7 +40,7 @@ class DataPipelineNetflix:
         )
         # Data Ingestion
         extractor = BatchExtractLoad(self.spark)
-        df = extractor.from_database("SELECT * FROM tb_score_netflix")
+        df = extractor.from_database("SELECT * FROM tb_netflix")
         # Data Quality
         dq = DataQuality(self.spark)
         quality_report = dq.check_frequency_all(df, threshold=1)

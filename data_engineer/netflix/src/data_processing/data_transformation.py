@@ -22,17 +22,12 @@ class DataTransformer:
         return df
     
     def country_transformations(self, df: DataFrame) -> DataFrame:
-        df02 = (
-            df.groupBy("country", "id")
+        df_country = (
+            df.filter(F.col("country").isNotNull())
+                .groupBy("country", "id")
                 .agg(F.count("show_id").alias("total_shows"))
                 .orderBy(F.desc("total_shows"))
                 .withColumnRenamed("country", "country_name")
         )
-            
-        df03 = (
-            df.alias("n1")
-                .join(df02.alias("n2"), on=["id"], how="left")
-                .na.drop(subset=["country", "cast", "director"])
-        )
         
-        return df03
+        return df_country

@@ -18,9 +18,9 @@ class BatchExtractLoad:
                 .format("jdbc") \
                 .option("url", "jdbc:postgresql://localhost:5432/dbpostgres")\
                 .option("query", query) \
-                .option("user", os.getenv("DB_USER", "dbpostgres")) \
+                .option("user", os.getenv("DB_USER", "postgres")) \
                 .option("password", os.getenv("DB_PASSWORD", "postgre123")) \
                 .option("driver", "org.postgresql.Driver") \
                 .load()
 
-        
+

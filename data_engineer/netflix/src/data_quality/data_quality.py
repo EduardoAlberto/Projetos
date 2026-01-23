@@ -34,6 +34,9 @@ class DataQuality:
             freq_dfs.append(freq_df)
 
         # União de todos os DataFrames de frequência
-        consolidated = reduce(lambda a, b: a.unionByName(b), freq_dfs)
+        if freq_dfs:
+            consolidated = reduce(lambda a, b: a.union(b), freq_dfs)
+        else:
+            consolidated = self.spark.createDataFrame([], "coluna STRING, valor STRING, count LONG, quality_flag STRING")
 
         return {"*": consolidated}
