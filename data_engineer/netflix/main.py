@@ -52,8 +52,25 @@ class DataPipelineNetflix:
 
     def run(self):
         try:
-            arq = self.spark.read.option("delimiter", ",").option("header", True).csv('/Users/eduardoalberto/LoadFile/input/netflix_titles_clean.csv',inferSchema=True)
+            # Validar arquivo de entrada
+            csv_path = Config.validate_input_path()
+            print(f"Lendo arquivo: {csv_path}")
+            
+            # Garantir que os diretórios de saída existem
+            Config.ensure_output_paths()
+            
+            # Carregar dados
+            arq = self.spark.read \
+                .option("delimiter", ",") \
+                .option("header", True) \
+                .option("inferSchema", True) \
+                .csv(csv_path)
+            
+            print(f"Dados carregados com sucesso. Total de registros: {arq.count()}")
             self.run_batch_pipeline(arq)
+        except FileNotFoundError as e:
+            print(f"Erro: {e}")
+            print(f"Configure a variável NETFLIX_INPUT_PATH ou coloque o arquivo em: {Config.BASE_INPUT_PATH}")
         except KeyboardInterrupt:
             print("Pipeline interrompido pelo usuário")
         finally:
