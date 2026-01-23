@@ -8,8 +8,8 @@ class Config:
     SPARK_EXECUTOR_MEMORY = os.getenv("SPARK_EXECUTOR_MEMORY", "2g")
 
     # Paths configuráveis via variáveis de ambiente
-    BASE_INPUT_PATH = os.getenv("NETFLIX_INPUT_PATH", "./data/input")
-    BASE_OUTPUT_PATH = os.getenv("NETFLIX_OUTPUT_PATH", "./data/output")
+    BASE_INPUT_PATH = os.getenv("NETFLIX_INPUT_PATH", "/Users/eduardoalberto/LoadFile/input")
+    BASE_OUTPUT_PATH = os.getenv("NETFLIX_OUTPUT_PATH", "/Users/eduardoalberto/LoadFile/output")
     
     # .CSV Configurações
     CSV_FILE = os.getenv("NETFLIX_CSV_FILE", "netflix_titles_clean.csv")
@@ -17,7 +17,7 @@ class Config:
 
     # Fontes de dados
     DATA_SOURCES = {
-        "jdbc_url": os.getenv("JDBC_URL", "jdbc:postgresql://localhost:5432/netflix_db"),
+        "jdbc_url": os.getenv("JDBC_URL", "jdbc:postgresql://localhost:5432/dbpostgres"),
         "db_user": os.getenv("DB_USER", "postgres"),
         "db_password": os.getenv("DB_PASSWORD", "postgre123")
     }
@@ -25,6 +25,11 @@ class Config:
     # Armazenamento
     STORAGE = {
         "data_lake_path": os.path.join(BASE_OUTPUT_PATH, "netflix/processados")
+    }
+
+    # MongoDB
+    MONGODB = {
+        "uri": os.getenv("MONGODB_URI","mongodb+srv://eduardoadsantos:Admin123@cluster0.3b4yvax.mongodb.net/"),
     }
     
     @staticmethod

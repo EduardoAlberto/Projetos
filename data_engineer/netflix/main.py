@@ -3,6 +3,9 @@ import os
 from pathlib import Path
 from datetime import datetime
 from pyspark.sql import SparkSession
+from pymongo.mongo_client import MongoClient
+from pymongo.server_api import ServerApi
+from pyspark.sql import SparkSession
 from pyspark.sql.functions import *
 from config.settings import Config
 from src.data_ingestion.extractorLoad import BatchExtractLoad
@@ -20,6 +23,8 @@ class DataPipelineNetflix:
             .config("spark.jars.packages", "org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.1,org.postgresql:postgresql:42.7.3") \
             .config("spark.pyspark.python", "/opt/homebrew/bin/python3.9") \
             .config("spark.pyspark.driver.python", "/opt/homebrew/bin/python3.9") \
+            .config("spark.mongodb.read.connection.uri", Config.MONGODB["uri"]) \
+            .config("spark.mongodb.write.connection.uri", Config.MONGODB["uri"]) \
             .getOrCreate()
         
     def run_batch_pipeline(self,arq):
@@ -38,6 +43,12 @@ class DataPipelineNetflix:
             "tb_country_netflix": dfs
             }
         )
+        storage.save_to_mongodb(
+            {
+                "tb_netflix": df_transformed,
+                "tb_country_netflix": dfs
+            }
+        )   
         # Data Ingestion
         extractor = BatchExtractLoad(self.spark)
         df = extractor.from_database("SELECT * FROM tb_netflix")

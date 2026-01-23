@@ -22,5 +22,7 @@ class BatchExtractLoad:
                 .option("password", os.getenv("DB_PASSWORD", "postgre123")) \
                 .option("driver", "org.postgresql.Driver") \
                 .load()
+    
+
 
 
