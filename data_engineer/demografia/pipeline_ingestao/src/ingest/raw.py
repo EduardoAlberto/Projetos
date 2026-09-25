@@ -31,8 +31,8 @@ def clean_null_bytes(dataframe):
     )
 
 
-def bulk_load_csv(spark, csv_path, postgres_config):
-    table_name = sanitize_table_name(csv_path.stem)
+def bulk_load_csv(spark, csv_path, postgres_config, table_name=None):
+    table_name = table_name or sanitize_table_name(csv_path.stem)
     qualified_table_name = f"{postgres_config['schema']}.{table_name}"
     print(f"Processando {csv_path.name} -> {qualified_table_name}")
 
@@ -69,19 +69,43 @@ def bulk_load_csv(spark, csv_path, postgres_config):
 
 
 def bulk_load_all(spark, postgres_config, csv_dirs):
-    """Carrega os CSVs das pastas configuradas no PostgreSQL."""
-    csv_files = sorted(
-        csv_file
-        for csv_dir in csv_dirs
-        for csv_file in csv_dir.glob("*.csv")
-    )
+    """Carrega todos os CSVs das pastas configuradas no PostgreSQL."""
+    csv_files = []
+    for csv_dir in csv_dirs:
+        files = sorted(
+            file for file in csv_dir.iterdir()
+            if file.is_file() and file.suffix.lower() == ".csv"
+        ) if csv_dir.exists() else []
+        print(f"{csv_dir}: {len(files)} CSV(s) encontrado(s)")
+        csv_files.extend(files)
+
+    table_names = {}
+    used_table_names = set()
+    for csv_file in csv_files:
+        base_name = sanitize_table_name(csv_file.stem)
+        table_name = base_name
+        suffix = 2
+        while table_name in used_table_names:
+            suffix_text = f"_{suffix}"
+            table_name = f"{base_name[:63 - len(suffix_text)]}{suffix_text}"
+            suffix += 1
+        table_names[csv_file] = table_name
+        used_table_names.add(table_name)
+
     results = []
 
     for csv_file in csv_files:
         try:
-            results.append(bulk_load_csv(spark, csv_file, postgres_config))
+            results.append(
+                bulk_load_csv(
+                    spark,
+                    csv_file,
+                    postgres_config,
+                    table_names[csv_file],
+                )
+            )
         except Exception as error:
-            table_name = sanitize_table_name(csv_file.stem)
+            table_name = table_names[csv_file]
             qualified_table_name = f"{postgres_config['schema']}.{table_name}"
             print(f"Erro ao processar {csv_file.name}: {error}")
             results.append({

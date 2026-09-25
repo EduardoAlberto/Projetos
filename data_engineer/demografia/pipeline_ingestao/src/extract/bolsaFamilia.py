@@ -1,16 +1,18 @@
-from pyspark.sql import SparkSession
-import requests
-from bs4 import BeautifulSoup
 import os
 import hashlib
 import re
+from pathlib import Path
+from urllib.parse import urlparse
+
+import requests
+from bs4 import BeautifulSoup
 
 # =========================
 # 🔥 CONFIG
 # =========================
 URL = "https://dados.prefeitura.sp.gov.br/dataset/numero-de-familas-beneficiarias-do-programa-bolsa-familia-por-distrito"
 
-OUTPUT_DIR = "/Users/eduardoalberto/LoadFile/raw"
+OUTPUT_DIR = os.getenv("RAW_DIR", "/Users/eduardoalberto/LoadFile/raw")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 HEADERS = {"User-Agent": "Mozilla/5.0"}
@@ -46,7 +48,8 @@ def arquivo_existe_e_igual(caminho, conteudo):
 def extrair_links_BF():
     print("🌐 Acessando dataset...")
 
-    response = requests.get(URL, headers=HEADERS)
+    response = requests.get(URL, headers=HEADERS, timeout=30)
+    response.raise_for_status()
     soup = BeautifulSoup(response.text, "html.parser")
 
     links = set()
@@ -69,7 +72,7 @@ def extrair_links_BF():
 # =========================
 def baixar(link):
     try:
-        nome = limpar_nome(link.split("/")[-1])
+        nome = limpar_nome(Path(urlparse(link).path).name)
 
         if not nome or "." not in nome:
             nome = f"arquivo_{hashlib.md5(link.encode()).hexdigest()}.csv"
@@ -84,8 +87,7 @@ def baixar(link):
             timeout=60
         )
 
-        if response.status_code != 200:
-            return f"❌ {response.status_code} - {link}"
+        response.raise_for_status()
 
         content_type = response.headers.get("Content-Type", "").lower()
 
@@ -97,8 +99,10 @@ def baixar(link):
         if arquivo_existe_e_igual(caminho, conteudo):
             return f"⏭️ Já existe: {nome}"
 
-        with open(caminho, "wb") as f:
+        temporario = f"{caminho}.part"
+        with open(temporario, "wb") as f:
             f.write(conteudo)
+        os.replace(temporario, caminho)
 
         return f"✅ Baixado: {nome}"
 

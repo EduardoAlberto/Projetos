@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CRAI | Panorama dos atendimentos</title>
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <style>
+    :root {
+      --ink: #17212b;
+      --muted: #64727e;
+      --paper: #f4f6f2;
+      --panel: #ffffff;
+      --line: #dce3df;
+      --teal: #087f73;
+      --coral: #e66b52;
+      --gold: #d99b35;
+      --navy: #24445c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: "Avenir Next", Avenir, "Segoe UI", sans-serif;
+    }
+    header {
+      padding: 48px clamp(22px, 6vw, 92px) 36px;
+      background: var(--navy);
+      color: #fff;
+      border-bottom: 6px solid var(--coral);
+    }
+    .eyebrow { margin: 0 0 12px; color: #b9dfd6; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+    h1 { max-width: 760px; margin: 0; font-family: Georgia, serif; font-size: clamp(34px, 5vw, 64px); font-weight: 400; line-height: 1.04; }
+    .subtitle { max-width: 680px; margin: 18px 0 0; color: #d9e7e5; font-size: 16px; line-height: 1.55; }
+    main { width: min(1240px, calc(100% - 36px)); margin: 28px auto 64px; }
+    .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 18px; }
+    .metric { padding: 20px; background: var(--panel); border: 1px solid var(--line); border-top: 4px solid var(--teal); }
+    .metric:nth-child(2) { border-top-color: var(--coral); }
+    .metric:nth-child(3) { border-top-color: var(--gold); }
+    .metric:nth-child(4) { border-top-color: var(--navy); }
+    .metric strong { display: block; font-size: 30px; font-weight: 700; }
+    .metric span { display: block; margin-top: 5px; color: var(--muted); font-size: 13px; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+    .chart-card { min-height: 430px; padding: 16px 16px 8px; background: var(--panel); border: 1px solid var(--line); }
+    .chart-card.wide { grid-column: 1 / -1; }
+    .chart-title { margin: 4px 8px 0; font-family: Georgia, serif; font-size: 21px; font-weight: 400; }
+    .chart-note { margin: 5px 8px 0; color: var(--muted); font-size: 12px; }
+    .plot { width: 100%; height: 350px; min-width: 0; overflow: hidden; }
+    footer { max-width: 1240px; margin: -40px auto 44px; padding: 0 18px; color: var(--muted); font-size: 12px; line-height: 1.5; }
+    @media (max-width: 760px) {
+      header { padding: 34px 22px 28px; }
+      main { width: min(100% - 24px, 620px); margin-top: 18px; }
+      .metrics, .grid { grid-template-columns: 1fr; }
+      .chart-card.wide { grid-column: auto; }
+      .chart-card { min-height: 400px; }
+      .plot { height: 320px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <p class="eyebrow">Base CRAI 2014 a 2024</p>
+    <h1>Quem chega, o que precisa, onde vive.</h1>
+    <p class="subtitle">Panorama exploratório dos 51.457 registros da tabela de sistematização geoinfo. Os gráficos ajudam a localizar concentração de demanda e lacunas de preenchimento.</p>
+  </header>
+  <main>
+    <section class="metrics" aria-label="Indicadores principais">
+      <div class="metric"><strong>51.457</strong><span>registros totais</span></div>
+      <div class="metric"><strong>73,7%</strong><span>regularização migratória</span></div>
+      <div class="metric"><strong>72,1%</strong><span>entre 18 e 49 anos</span></div>
+      <div class="metric"><strong>30,3%</strong><span>escolaridade não informada</span></div>
+    </section>
+    <section class="grid">
+      <article class="chart-card wide"><h2 class="chart-title">Principais demandas</h2><p class="chart-note">Contagem de registros por demanda declarada</p><div id="demandas" class="plot"></div></article>
+      <article class="chart-card"><h2 class="chart-title">Países de origem</h2><p class="chart-note">Top 10, agrupado por caixa e espaços</p><div id="paises" class="plot"></div></article>
+      <article class="chart-card"><h2 class="chart-title">Faixa etária</h2><p class="chart-note">Adultos concentram a maior parte dos atendimentos</p><div id="idades" class="plot"></div></article>
+      <article class="chart-card"><h2 class="chart-title">Condição de moradia</h2><p class="chart-note">Categorias com maior frequência</p><div id="moradia" class="plot"></div></article>
+      <article class="chart-card"><h2 class="chart-title">Situação migratória</h2><p class="chart-note">As duas grafias de indocumentado aparecem separadas</p><div id="migratoria" class="plot"></div></article>
+      <article class="chart-card wide"><h2 class="chart-title">Escolaridade</h2><p class="chart-note">A base contém variações de nomenclatura para níveis equivalentes</p><div id="escolaridade" class="plot"></div></article>
+    </section>
+  </main>
+  <footer>Fonte: bronze.bancocrai2014a2024_sistematizacao_geoinfo_atualizada. Valores derivados das consultas exploratórias realizadas no PostgreSQL. “Não informado” inclui categorias equivalentes quando já consolidadas na consulta.</footer>
+  <script>
+    const colors = { teal: '#087f73', coral: '#e66b52', gold: '#d99b35', navy: '#24445c', pale: '#b9dfd6' };
+    const base = {
+      paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)',
+      font: { family: 'Avenir Next, Avenir, Segoe UI, sans-serif', color: '#17212b', size: 12 },
+      margin: { t: 10, r: 24, b: 62, l: 150 },
+      hoverlabel: { bgcolor: '#17212b', font: { color: '#fff' } },
+      xaxis: { gridcolor: '#e4e9e6', zeroline: false },
+      yaxis: { automargin: true, zeroline: false },
+      showlegend: false,
+      displayModeBar: false,
+      responsive: true
+    };
+    function bar(id, labels, values, color, horizontal = true) {
+      const trace = horizontal
+        ? { type: 'bar', orientation: 'h', y: labels.slice().reverse(), x: values.slice().reverse(), marker: { color }, hovertemplate: '%{y}<br>%{x:,} registros<extra></extra>' }
+        : { type: 'bar', x: labels, y: values, marker: { color }, hovertemplate: '%{x}<br>%{y:,} registros<extra></extra>' };
+      const layout = { ...base };
+      if (!horizontal) layout.margin = { t: 10, r: 24, b: 72, l: 52 };
+      Plotly.newPlot(id, [trace], layout, { responsive: true, displayModeBar: false });
+    }
+    bar('demandas', ['Regularização migratória', 'Orientações diversas', 'Vaga em Centro de Acolhida', 'Acesso a programas de cidadania', 'Acolhimento: vulnerabilidade/risco', 'Documento brasileiro', 'Demandas diversas', 'Não informado', 'Documentos', 'Serviços públicos'], [37912, 2882, 1872, 1805, 1500, 1152, 974, 909, 710, 452], colors.teal);
+    bar('paises', ['ANGOLA', 'VENEZUELA', 'NÃO INFORMADO', 'BOLIVIA', 'HAITI', 'GUINE BISSAU', 'SIRIA', 'MARROCOS', 'PERU', 'CUBA'], [11859, 6191, 4519, 3553, 2612, 1959, 1736, 1157, 1148, 855], colors.coral);
+    bar('idades', ['30 a 39 anos', '18 a 29 anos', '40 a 49 anos', 'Não informado', '50 a 59 anos', '0 a 11 anos', 'Maiores de 60 anos', '12 a 17 anos'], [15549, 12549, 8986, 4369, 3473, 3297, 1921, 1312], colors.navy);
+    bar('moradia', ['Alugado', 'Não informado', 'Aluguel ou pensão', 'Abrigo/unidade de reclusão', 'Centro de Acolhida', 'Casa de parente/amigo', 'Ocupação', 'Cedido', 'Situação de rua'], [18285, 15611, 5833, 2223, 1781, 1613, 1583, 1257, 1641], colors.gold);
+    bar('migratoria', ['Indocumentado / Irregular', 'Residência indeterminada', 'Solicitante de refúgio', 'Solicitante de reconhecimento', 'Residência temporária', 'Visto permanente', 'Refugiado', 'Visto de turismo'], [8247, 5539, 5432, 5078, 3880, 1780, 1676, 1207], colors.teal);
+    bar('escolaridade', ['Médio completo', 'Ensino médio completo', 'Médio incompleto', 'Superior completo', 'Fundamental incompleto', 'Não declarado', 'Ensino médio incompleto', 'Superior incompleto'], [9636, 5295, 4074, 2699, 2190, 2028, 1856, 1049], colors.coral);
+    window.addEventListener('resize', () => document.querySelectorAll('.plot').forEach((plot) => Plotly.Plots.resize(plot)));
+  </script>
+</body>
+</html>

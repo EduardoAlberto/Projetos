@@ -1,56 +1,25 @@
-from pyspark.sql import SparkSession
-import requests
-from bs4 import BeautifulSoup
 import os
-import re
-from data_engineer.demografia.pipeline_ingestao.src.extract.atendimentoParaImigrantes import extrair_links_IM, baixar
-from data_engineer.demografia.pipeline_ingestao.src.extract.bolsaFamilia import extrair_links_BF, baixar  
+from concurrent.futures import ThreadPoolExecutor
 
-# =========================
-# 🔥 SPARK
-# =========================
-spark = SparkSession.builder \
-    .appName("Download Paralelo CKAN") \
-    .master("local[*]") \
-    .getOrCreate()
-
-sc = spark.sparkContext
+from atendimentoParaImigrantes import baixar as baixar_imigrante
+from atendimentoParaImigrantes import extrair_links_IM
+from bolsaFamilia import baixar as baixar_bolsa
+from bolsaFamilia import extrair_links_BF
 
 
-# =========================
-# 🚀 IMIGRANTES
-# =========================
-links = extrair_links_IM()
-
-print(f"🔎 Encontrados {len(links)} links")
-
-# 🔥 paraleliza com Spark
-rdd = sc.parallelize(links, numSlices=4)
-
-resultados = rdd.map(baixar).collect()
-
-# print resultados
-for r in resultados:
-    print(r)
+def baixar_links(links, downloader):
+    workers = int(os.getenv("DOWNLOAD_WORKERS", "4"))
+    with ThreadPoolExecutor(max_workers=workers) as executor:
+        return list(executor.map(downloader, links))
 
 
-# =========================
-# 🚀 BOLSA FAMILIA
-# =========================
-links = extrair_links_BF()
+def main():
+    for resultado in baixar_links(extrair_links_IM(), baixar_imigrante):
+        print(resultado)
 
-if not links:
-    print("⚠️ Nenhum link encontrado")
-else:
-    print("🚀 Iniciando downloads paralelos...")
+    for resultado in baixar_links(extrair_links_BF(), baixar_bolsa):
+        print(resultado)
 
-    rdd = sc.parallelize(links, numSlices=4)
 
-    resultados = rdd.map(baixar).collect()
-
-    for r in resultados:
-        print(r)
-
-print("\n🎯 Finalizado")
-
-spark.stop()
+if __name__ == "__main__":
+    main()
