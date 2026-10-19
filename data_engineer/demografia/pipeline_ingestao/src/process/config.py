@@ -20,6 +20,7 @@ QUERIES = {
     "t5": "SELECT * FROM bronze.dicionario_de_bancocrai2014a2019",
     "t6": "SELECT * FROM bronze.dicionariobasecadunicoimigrantesmsp082020_1",
     "t7": "SELECT * FROM bronze.programabolsafamilia_202501",
+    "t8": "SELECT * FROM bronze.base_de_dados_crai_a_partir_de_2025",
 }
 
 

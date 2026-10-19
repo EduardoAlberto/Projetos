@@ -5,3 +5,78 @@
   letter-spacing: 0.14em;
   margin-bottom: 0;
 }
+
+div[data-testid="stRadio"] > label {
+  display: none;
+}
+
+div[data-testid="stRadio"] > div[role="radiogroup"] {
+  align-items: flex-end;
+  gap: 4px;
+  padding: 10px 10px 0;
+  background: #e8eeeb;
+  border-bottom: 1px solid #c5cfca;
+  border-radius: 10px 10px 0 0;
+}
+
+div[data-testid="stRadio"] label[data-baseweb="radio"] {
+  position: relative;
+  display: flex !important;
+  flex: 0 1 auto;
+  align-items: center;
+  min-height: 42px;
+  margin: 0 0 -1px;
+  padding: 0 18px;
+  color: #53645d;
+  background: #dce4df;
+  border: 1px solid #c5cfca;
+  border-bottom-color: #c5cfca;
+  border-radius: 9px 9px 0 0;
+  transition: background-color 140ms ease, color 140ms ease, transform 140ms ease;
+}
+
+div[data-testid="stRadio"] label[data-baseweb="radio"] > div:first-child {
+  display: none;
+}
+
+div[data-testid="stRadio"] label[data-baseweb="radio"]:hover {
+  color: #173e34;
+  background: #f5f8f6;
+}
+
+div[data-testid="stRadio"] label[data-baseweb="radio"]:has(input:checked) {
+  z-index: 1;
+  color: #173e34;
+  background: #ffffff;
+  border-color: #c5cfca;
+  border-bottom-color: #ffffff;
+  box-shadow: inset 0 3px 0 #087f73;
+}
+
+div[data-testid="stRadio"] label[data-baseweb="radio"] p {
+  margin: 0;
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  div[data-testid="stRadio"] > div[role="radiogroup"] {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap;
+    gap: 2px;
+    padding: 8px 6px 0;
+  }
+
+  div[data-testid="stRadio"] label[data-baseweb="radio"] {
+    flex: 1 1 0;
+    justify-content: center;
+    min-height: 42px;
+    min-width: 0;
+    padding: 0 8px;
+    text-align: center;
+  }
+
+  div[data-testid="stRadio"] label[data-baseweb="radio"] p {
+    white-space: normal;
+  }
+}

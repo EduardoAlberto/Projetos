@@ -6,7 +6,7 @@ Dashboard Streamlit com gráficos Plotly originados diretamente do PostgreSQL.
 
 - `app.py`: interface e composição dos gráficos.
 - `src/db.py`: configuração segura e pool de conexões.
-- `src/queries.py`: consultas somente leitura da camada bronze.
+- `src/queries.py`: consultas somente leitura da camada silver.
 - `.env.example`: modelo das variáveis de ambiente.
 
 ## Executar

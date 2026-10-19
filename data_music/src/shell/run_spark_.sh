@@ -1,1 +1,0 @@
-python3.9 /Users/eduardoalberto/Projetos/data_music/src/pyspark/config.py

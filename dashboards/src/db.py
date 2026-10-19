@@ -9,7 +9,16 @@ from psycopg_pool import ConnectionPool
 
 load_dotenv()
 
-TABLE = 'bronze.bancocrai2014a2024_sistematizacao_geoinfo_atualizada'
+TABLE = {
+    'base_cadunico_imigrantes_2020_t2': 'silver.base_cadunico_imigrantes_2020_t2',
+    'base_crai_2014_2024_t3': 'silver.base_crai_2014_2024_t3',
+    'base_crai_2025_t8': 'silver.base_crai_2025_t8',
+    'dicionario_cadunico_imigrantes_2020_t6': 'silver.dicionario_cadunico_imigrantes_2020_t6',
+    'dicionario_crai_2014_2019_t5': 'silver.dicionario_crai_2014_2019_t5',
+    'dicionario_crai_2025_t1': 'silver.dicionario_crai_2025_t1',
+    'dicionario_crai_2025_t4': 'silver.dicionario_crai_2025_t4',
+    'programa_bolsa_familia_2025_t7': 'silver.programa_bolsa_familia_2025_t7',
+}
 
 
 def _database_url() -> str:
